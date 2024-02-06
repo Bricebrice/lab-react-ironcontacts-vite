@@ -70,6 +70,16 @@ function App() {
   };
   /* END SORT BY POPULARITY */
 
+  /* START REMOVE CONTACT */
+  const removeContact = (contactId) => {
+    const filteredPeople = people.filter((contact) => {
+      return contact.id !== contactId;
+    });
+    console.log("filteredPeople", filteredPeople);
+    setPeople(filteredPeople);
+  };
+  /* END REMOVE CONTACT */
+
   return (
     <div className="App">
       <h1>LAB | React IronContacts</h1>
@@ -99,6 +109,11 @@ function App() {
                 <td>{actor.popularity}</td>
                 <td>{actor.wonOscar && <p>🏆</p>}</td>
                 <td>{actor.wonEmmy && <p>🌟</p>}</td>
+                <td>
+                  <button onClick={() => removeContact(actor.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
