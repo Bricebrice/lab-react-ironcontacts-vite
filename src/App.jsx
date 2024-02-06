@@ -5,6 +5,7 @@ import { useState } from "react";
 function App() {
   const [people, setPeople] = useState(contacts.slice(0, 5));
 
+  /* START ADD RANDOM CONTACT */
   const addRandomContact = () => {
     // Clone the array (5 contacts)
     const clonedPeople = [...people];
@@ -37,11 +38,47 @@ function App() {
 
   console.log("people", people); // See the output of clicking the add random contact button
 
+  /* END ADD RANDOM CONTACT */
+
+  /* START SORT BY NAME */
+  const sortByName = () => {
+    const clonedPeople = [...people];
+    // Sort copy of people alphabetically
+    const sortedPeopleByName = clonedPeople.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+    // console.log("sorted people", sortedPeopleByName);
+    // Finally, update the people variable through the function
+    setPeople(sortedPeopleByName);
+  };
+  /* END SORT BY NAME */
+
+  /* START SORT BY POPULARITY */
+  const sortByPopularity = () => {
+    const clonedPeople = [...people];
+    // Sort copy of people alphabetically
+    const sortedPeopleByPopularity = clonedPeople.sort((a, b) => {
+      if (a.popularity > b.popularity) return -1;
+      if (a.popularity < b.popularity) return 1;
+      return 0;
+    });
+    // console.log("sorted people by pop", sortedPeopleByPopularity);
+    // Finally, update the people variable through the function
+    setPeople(sortedPeopleByPopularity);
+  };
+  /* END SORT BY POPULARITY */
+
   return (
     <div className="App">
       <h1>LAB | React IronContacts</h1>
 
       <button onClick={addRandomContact}>Add Random Contact</button>
+      <br />
+      <button onClick={sortByName}>Sort by name</button>
+      <br />
+      <button onClick={sortByPopularity}>Sort by popularity</button>
 
       <table>
         <tbody>
